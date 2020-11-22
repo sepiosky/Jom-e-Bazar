@@ -24,7 +24,9 @@ add three type of object to website (by selecting type and choosing csv file tha
     * `Charge Wallet And View Recent Wallet Activities`
 
 you can read full specifications of domain codes in `Assignment 7(Domain).pdf`
+
 models and comment classifier:`/website/domain`
+
 views are in `/website/template`
 
 ## How to run
