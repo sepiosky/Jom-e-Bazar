@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+    .background-image {
+        background-image: url("https://marketingland.com/wp-content/ml-loads/2015/02/ecommerce-shopping-cart-keyboard-ss-1920.jpg");
+        background-color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+      }
+
+      .button {
+          background-color: black;
+          float: center;
+          color: white;
+          text-align:center;
+          padding: 14px 20px;
+          border: none;
+          cursor: pointer;
+          width: 40%;
+          border-radius: 15px;
+          font-size:1em;
+      }
+
+    .box {
+        width: 35%;
+        border-radius: 3px;
+        display: inline-block;
+        float: right;
+        border-radius: 10%;
+        text-align:center;
+    }
+
+}
+</style>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://requirejs.org/docs/release/2.3.6/r.js"></script>
+</head>
+
+    <body class="background-image">
+         <div class="box">
+             <br>
+             <br>
+             <p style="font-size:2em;color: white;">Welcome To Bazar</p>
+             <br>
+             <div>
+                 <form id="login" action="/login" method="get">
+                     <button class="button" type="submit">Login</a>
+                </form>
+             </div>
+             <br>
+             <div>
+                 <form action="/signup" method="get">
+                     <button class="button" type="submit">Signup</a>
+                </form>
+             </div>
+         </div>
+    <% if(context["alert0"]!="")
+    { %>
+    <div class="fixed-bottom">
+         <div class="alert alert-danger alert-dismissible">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <strong> <% cout<<context["alert0"]; %> </strong>
+         </div>
+     </div>
+     <% } %>
+     <% if(context["alert1"]!="")
+     { %>
+     <div class="fixed-bottom">
+          <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong> <% cout<<context["alert1"]; %> </strong>
+          </div>
+      </div>
+      <% } %>
+     </body>
+</head>
+</html>

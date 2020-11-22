@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<style>
+
+body {
+    background-image: url("http://rkgraphics.co.uk/wp-content/uploads/2016/05/rkmedia-website-design-background-4.png");
+    text-align:center;
+    font-family: Courier, Arial;
+}
+.sendbutton {
+    background-color: black;
+    float: center;
+    color: white;
+    text-align:center;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+    border-radius: 15px;
+}
+
+table{
+    float:center;
+    text-align:center;
+    font-family: Courier, Arial;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding: 10px;
+}
+
+th, td {
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+tr:hover {background-color: #f5f5f5;}
+
+input[type=text] {
+  width: 50%;
+  padding: 7px 7px;
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: 15px;
+}
+
+.addtocartbutton {
+    background-color: black;
+    float: right;
+    color: white;
+    text-align:center;
+    padding: 7px 7px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 15px;
+}
+
+textarea{
+      width: 80%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      border-radius: 15px;
+}
+.commenttable{
+    text-align:center;
+    font-family: Courier, Arial;
+    width: 80%;
+    padding: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.cth, .ctd {
+  text-align: center;
+  border: 1px solid #ddd;
+  font-size:1.5em;
+}
+
+
+.commenttable {
+  border-collapse: collapse;
+}
+.toppagebox {
+    text-align:center;
+    width: 30%;
+    height: 40%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.toppagebutton {
+    background-color: black;
+    float: right;
+    color: white;
+    text-align:center;
+    padding: 14px 0px;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+    border-radius: 15px;
+}
+
+.button {
+    background-color: black;
+    float: center;
+    color: white;
+    text-align:center;
+    padding: 14px 0px;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 15px;
+}
+
+</style>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://requirejs.org/docs/release/2.3.6/r.js"></script>
+</head>
+<html>
+  <body style="text-align:center;">
+    <h1 style="text-align:center;"> <% cout<<context["productname"]; %>'s Detail</h1>
+    <br>
+    <div style="float:right;" class="toppagebox">
+        <form action="/logout" method="get">
+            <button class="toppagebutton" type="submit">Logout</button>
+        </form>
+    </div>
+    <div style="float:left;" class="toppagebox">
+        <form action="/buyerhome" method="get">
+            <button class="toppagebutton" type="submit">Home</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 style="text-align:center;">You Can Compare Features With Other Products'<h2>
+    <form method="get" action="/product-detail">
+        <input name="productid" type="hidden" value=<%cout<<context["productid"];%> >
+        <input name="comparewith" type="text" placeholder="Product ID">
+        <br>
+        <button class="button" type="submit">Compare</button>
+    </form>
+    <div style="text-align:center;float:center;">
+        <br>
+        <br>
+        <table style="text-align:center;">
+            <%
+                if(context["feature1-compare"]!=""){%>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><b><%cout<< context["comparewith"]; %></td>
+                    </tr>
+            <% } %>
+            <%
+                for(int i=1;context["feature"+to_string(i)+"-name"]!="";i++)
+                {
+            %>
+                <tr>
+                    <td><b> <%cout<<context["feature"+to_string(i)+"-name"];%> </td>
+                    <td><b> <%cout<<context["feature"+to_string(i)+"-value"];%> </td>
+                    <% if( context["comparewith"]!="" ) { %>
+                        <td style="color:<%cout<<context["feature"+to_string(i)+"-comparecolor"];%>;"><b> <%cout<<context["feature"+to_string(i)+"-compare"];%> </td>
+                            <%}%>
+                </tr>
+            <%
+                }
+            %>
+        </table>
+        <br>
+        <br>
+        <br>
+        <h2 style="text-align:center;">All Offers On Product</h2>
+        <br>
+        <table style="text-align:center;">
+            <tr>
+                <th> Offer ID </th>
+                <th> Offer Unit Price </th>
+                <th> Offer Amount </th>
+            </tr>
+            <%
+            for(int i=1;context["offer"+to_string(i)+"-offerid"]!="";i++)
+            {
+                string path=context["offer"+to_string(i)+"-offerid"];
+            %>
+            <tr>
+                <td> <% cout<<context["offer"+to_string(i)+"-offerid"]; %> </td>
+                <td> <% cout<<context["offer"+to_string(i)+"-unitprice"]; %> </td>
+                <td> <% cout<<context["offer"+to_string(i)+"-amount"]; %> </td>
+                <% if(context["offer"+to_string(i)+"-amount"]!="0") { %>
+                <td>
+                    <form action="/add-product-to-cart" method="post" >
+                        <input name="amount" type="text" placeholder="Amount">
+                        <input name="offerid" type="hidden" value=<%cout<<path;%> >
+                        <button class="button" type="submit">Add To Cart</button>
+                    </form>
+                </td>
+                <% }
+                if(context["offer"+to_string(i)+"-amount"]=="0") { %>
+                <td>
+                    <b style="font-size:1.5em;">Out Of Stock</b>
+                </td>
+                <% } %>
+            </tr>
+            <%
+            }
+            %>
+        </table>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div style="text-align:center;">
+        <h2 style="text-align:center;">Reviews</h2>
+        <br>
+        <form action="/add-comment" method="post">
+            <input name="comment" type="text" placeholder="Type Your Comment Here" required></input>
+            <input name="productid" type="hidden" value="<%cout<<context["productid"];%>"></input>
+            <br>
+            <button class="button" type="submit">Send</button>
+        </form>
+        <br>
+        <table class="commenttable">
+            <tr>
+            <th class="cth"><b>All Comments</b></th>
+            </tr>
+            <% for(int i=1;context["comment"+to_string(i)+"-user"]!="";i++)
+            {%>
+                <tr>
+                <td class="ctd"><b>
+                <%cout<<context["comment"+to_string(i)+"-user"]+":"+context["comment"+to_string(i)+"-comment"]; %>
+                </b></td>
+                </tr>
+            <%
+            } %>
+        </table>
+    </div>
+    <% if(context["alert0"]!="")
+    { %>
+    <div class="fixed-bottom" style="text-align:center;">
+         <div class="alert alert-danger alert-dismissible">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <strong> <% cout<<context["alert0"]; %> </strong>
+         </div>
+     </div>
+     <% } %>
+     <% if(context["alert1"]!="")
+     { %>
+     <div class="fixed-bottom" style="text-align:center;">
+          <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong> <% cout<<context["alert1"]; %> </strong>
+          </div>
+      </div>
+      <% } %>
+  </body>
+</html>

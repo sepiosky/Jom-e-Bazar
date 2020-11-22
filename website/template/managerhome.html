@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<style>
+body {
+    background-image: url("https://cdn.wallpapersafari.com/30/75/7OvHoS.jpeg");
+    text-align:center;
+    font-family: Courier, Arial;
+}
+
+.checkbox {
+    background-image: url("https://cdn.wallpapersafari.com/30/75/7OvHoS.jpeg");
+    text-align:center;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid grey;
+    border-radius: 15px;
+    margin 5px 5px;
+
+}
+
+.logoutbutton {
+    background-color: black;
+    float: right;
+    color: white;
+    text-align:left;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+    border-radius: 15px;
+}
+
+
+.button {
+  background-color: black;
+  text-align:center;
+  color: white;
+  font-family:Courier;
+  font-size: 1em;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.uploadbox {
+    background-color:BlanchedAlmond;
+    float:left;
+    text-align:center;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 5px solid grey;
+    border-style:outset;
+    border-radius:2%;
+}
+
+.seeoffersbox {
+    background-color:BlanchedAlmond;
+    float:right;
+    text-align:center;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 5px solid grey;
+    border-style:outset;
+    border-radius:2%;
+
+}
+</style>
+
+
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://requirejs.org/docs/release/2.3.6/r.js"></script>
+</head>
+  <body style="text-align: center;">
+    <h1>MANAGER HOME PAGE</h1>
+    <div>
+        <form action="/logout" method="get">
+            <button class="logoutbutton" type="submit">Logout</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+    <div class="col-sm-6">
+        <h2>Upload Products File</h2>
+      <form action="/managerhome" method="post" enctype="multipart/form-data">
+        <br>
+        <b>Choose Product Type:</b>
+        <br>
+        <span>
+            <div class="checkbox">
+                Car <input type="radio" name="producttype" value="car" checked>
+            </div>
+            <div class="checkbox">
+                Mobile <input type="radio" name="producttype" value="mobile">
+            </div>
+            <div class="checkbox">
+                TV <input type="radio" name="producttype" value="tv">
+            </div>
+        </span>
+        <br>
+        <br>
+        <b>Choose File:</b>
+        <br>
+        <input name="file_name" type="text" placeholder="File Name" required>
+        <input type="file" name="file">
+        <br>
+        <br>
+        <button class="button" type="submit">Upload</button>
+      </form>
+      <br>
+      <br>
+    </div>
+
+    <div class="col-sm-6">
+        <h2>Watch All Offers</h2>
+        <br>
+        <form action="/alloffers" method="post" onsubmit="target_popup(this)" enctype="multipart/form-data">
+          <b>Sorted By:</b>
+          <span style="box-sizing: border-box;">
+              <div class="checkbox">
+                  Offer ID <input type="radio" name="field" value="offerId" checked>
+              </div>
+              <div class="checkbox">
+                  Offer Price <input type="radio" name="field" value="offerPrice">
+              </div>
+          </span>
+          <br>
+          <br>
+         <b>In:</b>
+          <span>
+              <div class="checkbox">
+                  Descending <input type="radio" name="order" value="DESCEND" checked>
+              </div>
+              <div class="checkbox">
+                  Ascending <input type="radio" name="order" value="ASCEND">
+              </div>
+          </span>
+          <b>Order</b>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <button class="button" type="submit">Show</button>
+        </form>
+        <br>
+        <br>
+    </div>
+    </div>
+    <% if(context["alert0"]!="")
+    { %>
+    <div class="fixed-bottom" style="text-align:center;">
+         <div class="alert alert-success alert-dismissible">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <strong> <% cout<<context["alert0"]; %> </strong>
+         </div>
+     </div>
+     <% } %>
+     <% if(context["alert1"]!="")
+     { %>
+     <div class="fixed-bottom" style="text-align:center;">
+          <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong> <% cout<<context["alert1"]; %> </strong>
+          </div>
+      </div>
+      <% } %>
+  </body>
+</html>
+
+<script>
+function target_popup(form) {
+    window.open('', 'formpopup', 'width=400,height=400,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');
+    form.target = 'formpopup';
+}
+function success() {
+    alert("File Uploaded Successfully");
+}
+</script>

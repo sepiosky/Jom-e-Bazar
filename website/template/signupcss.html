@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+    background-image: url("https://hdqwalls.com/download/city-blurred-hd-1920x1080.jpg");
+    text-align:center;
+}
+.signupbox {
+    text-align:center;
+    width: 40%;
+    margin: 10px 0px 0px 0px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+input[type=text] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 15px;
+}
+.button {
+  background-color: black;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+  border-radius: 15px;
+}
+
+.usermode {
+    background-color: black;
+    color: white;
+    font-size: 1em;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    display: inline-block;
+    border-radius: 15px;
+}
+.imgcontainer {
+  text-align: center;
+  margin: 2px 0 1px 0;
+}
+img.avatar {
+  width: 20%;
+  border-radius: 5%;
+}
+</style>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://requirejs.org/docs/release/2.3.6/r.js"></script>
+</head>
+  <body class="body">
+     <div classs="signupbox">
+       <div class="imgcontainer">
+            <img src="https://cdn4.iconfinder.com/data/icons/network-and-security/63/add-user-512.png" alt="Avatar" class="avatar">
+       </div>
+       <div class="container">
+          <form action="/signup" method="post">
+             <div style="text-align:center;direction:ltr">
+                <div>
+                    <br>
+                    <input name="username" type="text" placeholder="Username" required>
+                </div>
+                <div>
+                    <br>
+                    <input name="password1" type="text" placeholder="Password" required>
+                </div>
+                <div>
+                    <br>
+                    <input name="password2" type="text" placeholder="Re-enter Password" required>
+                </div>
+                <div>
+                    <br>
+                    <input name="mail" type="text" placeholder="Mail" required>
+                </div>
+                <br>
+                <div class="usermode">
+                <b>Choose Your User-Mode :</b>
+                    <span>
+                        <input type="radio" name="usertype" value="buyer" checked> Buyer
+                        <input type="radio" name="usertype" value="seller"> Seller
+                    </span>
+                    <br>
+                </div>
+                <div>
+                    <button class="button" type="submit">Signup</button>
+                </div>
+             </div>
+          </form>
+      </div>
+    </div>
+    <% if(context["alert0"]!="")
+    { %>
+    <div class="fixed-bottom" style="text-align:center;">
+         <div class="alert alert-danger alert-dismissible">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <strong> <% cout<<context["alert0"]; %> </strong>
+         </div>
+     </div>
+     <% } %>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<style>
+
+body {
+    background-image: url("http://rkgraphics.co.uk/wp-content/uploads/2016/05/rkmedia-website-design-background-4.png");
+    text-align:center;
+    font-family: Courier, Arial;
+}
+
+.logoutbutton {
+    background-color: black;
+    float: right;
+    color: white;
+    text-align:center;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+    border-radius: 15px;
+}
+
+.offerbutton {
+    background-color: black;
+    float: center;
+    color: white;
+    text-align:center;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 40%;
+    border-radius: 15px;
+}
+
+table{
+    text-align:center;
+    font-family: Courier, Arial;
+    width: 80%;
+    padding: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+th, td {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tr:hover {background-color: #f5f5f5;}
+
+</style>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://requirejs.org/docs/release/2.3.6/r.js"></script>
+</head>
+<html>
+  <body style="text-align:center;">
+    <h1>HOME PAGE</h1>
+    <div>
+        <form action="/logout" method="get">
+            <button class="logoutbutton" type="submit">Logout</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h2 style="text-align:center;">Your Offers</h2>
+    <table style="text-align:center;">
+        <tr>
+            <th> Product ID </th>
+            <th> Offer ID </th>
+            <th> Offer Unit Price </th>
+            <th> Offer Amount </th>
+        </tr>
+        <br>
+        <%
+            for(int i=1;context["myoffers"+to_string(i)+"-productid"]!="";i++)
+            {
+        %>
+            <tr>
+            <td>
+            <%
+                    cout<<context["myoffers"+to_string(i)+"-productid"];
+            %>
+            </td>
+            <td>
+            <%
+                    cout<<context["myoffers"+to_string(i)+"-offerid"];
+            %>
+            </td>
+            <td>
+            <%
+                    cout<<context["myoffers"+to_string(i)+"-offerunitprice"];
+            %>
+            </td>
+            <td>
+            <%
+                    cout<<context["myoffers"+to_string(i)+"-offeramount"];
+            %>
+            </td>
+            </tr>
+        <br>
+        <%
+            }
+        %>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="text-align:center;">
+        <form action="/offer" method="get">
+            <button class="offerbutton" type="submit">Click Here To Make A New Offer</button>
+        </form>
+    </div>
+    <% if(context["alert0"]!="")
+    { %>
+    <div class="fixed-bottom" style="text-align:center;">
+         <div class="alert alert-danger alert-dismissible">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <strong> <% cout<<context["alert0"]; %> </strong>
+         </div>
+     </div>
+     <% } %>
+     <% if(context["alert1"]!="")
+     { %>
+     <div class="fixed-bottom" style="text-align:center;">
+          <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong> <% cout<<context["alert1"]; %> </strong>
+          </div>
+      </div>
+      <% } %>
+  </body>
+</html>

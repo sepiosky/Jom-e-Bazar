@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<style>
+
+body {
+    background-image: url("http://rkgraphics.co.uk/wp-content/uploads/2016/05/rkmedia-website-design-background-4.png");
+    text-align:center;
+    font-family: Courier, Arial;
+}
+
+.productdetailbutton {
+    background-color: black;
+    float: center;
+    color: white;
+    text-align:center;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 40%;
+    border-radius: 15px;
+}
+.toppagebox {
+    text-align:center;
+    width: 30%;
+    height: 40%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.toppagebutton {
+    background-color: black;
+    float: right;
+    color: white;
+    text-align:center;
+    padding: 14px 0px;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+    border-radius: 15px;
+}
+
+
+</style>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://requirejs.org/docs/release/2.3.6/r.js"></script>
+</head>
+<html>
+  <body style="text-align:center;">
+    <h1>HOME PAGE</h1>
+    <div style="float:right;" class="toppagebox">
+        <form action="/logout" method="get">
+            <button class="toppagebutton" type="submit">Logout</button>
+        </form>
+    </div>
+    <div style="float:center;" class="toppagebox">
+        <form action="/getcart" method="get">
+            <button class="toppagebutton" type="submit">Submit Yout Cart</button>
+        </form>
+    </div>
+    <div id="walletajax" style="float:left;" class="toppagebox">
+        <form action="/mywallet" method="get">
+            <button id="walletrevealer" class="toppagebutton">Your Wallet Information</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h2 style="text-align:center;">All Products</h2>
+    <div style="text-align:center;">
+        <%
+            if(context["product1"]=="")
+                context["allproductsdetail"]="No Product Available!";
+            cout<<context["allproductsdetail"];
+        %>
+        <br>
+        <%
+            for(int i=1;context["product"+to_string(i)]!="";i++)
+            {
+        %>
+        <form action="/product-detail" method="get">
+            <input name="productid" type="hidden" value=<%cout<<i;%> >
+            <button class="productdetailbutton" type="submit"><b><%cout<<context["product"+to_string(i)];%></b></button>
+        </form>
+        <br>
+        <%
+            }
+        %>
+    </div>
+    <% if(context["alert0"]!="")
+    { %>
+    <div class="fixed-bottom" style="text-align:center;">
+         <div class="alert alert-danger alert-dismissible">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <strong> <% cout<<context["alert0"]; %> </strong>
+         </div>
+     </div>
+     <% } %>
+     <% if(context["alert1"]!="")
+     { %>
+     <div class="fixed-bottom" style="text-align:center;">
+          <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong> <% cout<<context["alert1"]; %> </strong>
+          </div>
+      </div>
+      <% } %>
+  </body>
+</html>

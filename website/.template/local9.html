@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<style>
+
+body {
+    background-image: url("http://rkgraphics.co.uk/wp-content/uploads/2016/05/rkmedia-website-design-background-4.png");
+    text-align:center;
+    font-family: Courier, Arial;
+}
+table, th, td  {
+    text-align:center;
+    font-family: Courier, Arial;
+    width: 80%;
+    padding: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+th, td {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tr:hover {background-color: #f5f5f5;}
+
+button {
+    background-color: black;
+    float: center;
+    color: white;
+    text-align:center;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    border-radius: 15px;
+}
+
+.box {
+    background-color:DimGray;
+    text-align:center;
+    width: 48%;
+    height: 40%;
+    margin: 80px 10px 10px 10px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 5px solid grey;
+    border-style:outset;
+    border-radius:2%;
+}
+
+</style>
+
+<html>
+  <body>
+    <h1>YOUR CART</h1>
+    <div class="box">
+        <table>
+            <tr>
+                <th> Product ID </th>
+                <th> Product Name </th>
+                <th> Offer ID </th>
+                <th> Seller ID </th>
+                <th> Total Price </th>
+                <th> Amount </th>
+            </tr>
+            <%
+                for(int i=1;context["order"+to_string(i)+"-productid"]!="";i++)
+                {
+            %>
+            <tr>
+                <td><%cout<<context["order"+to_string(i)+"-productid"];%></td>
+                <td><%cout<<context["order"+to_string(i)+"-productname"];%></td>
+                <td><%cout<<context["order"+to_string(i)+"-offerid"];%></td>
+                <td><%cout<<context["order"+to_string(i)+"-sellerid"];%></td>
+                <td><%cout<<context["order"+to_string(i)+"-totalprice"];%></td>
+                <td><%cout<<context["order"+to_string(i)+"-amount"];%></td>
+            </tr>
+            <%
+                }
+            %>
+        </table>
+        <p><b>Total Cost: <%cout<<context["cartcost"];%></b></p>
+            <br>
+            <form action="/submitcart" method="post">
+              <button type="submit">Submit Cart</button>
+            </form>
+    </div>
+  </body>
+</html>

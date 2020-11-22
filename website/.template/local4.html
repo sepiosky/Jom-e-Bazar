@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<style>
+
+body {
+    background-image: url("http://canadagaminglaw.com/wp-content/uploads/2016/06/background-1.jpg");
+    text-align:center;
+    font-family: Courier, Arial;
+}
+
+table{
+    text-align:center;
+    font-family: Courier, Arial;
+    width: 80%;
+    padding: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+th, td {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tr:hover {background-color: #f5f5f5;}
+
+</style>
+<html>
+  <body style>
+      <h2>ALL OFFERS IN STORE</h2>
+      <table>
+          <tr>
+              <th> Product ID </th>
+              <th> Offer ID </th>
+              <th> Offer Unit Price </th>
+              <th> Offer Amount </th>
+          </tr>
+          <br>
+          <%
+              for(int i=1;context["alloffers"+to_string(i)+"-productid"]!="";i++)
+              {
+          %>
+              <tr>
+              <td>
+              <%
+                      cout<<context["alloffers"+to_string(i)+"-productid"];
+              %>
+              </td>
+              <td>
+              <%
+                      cout<<context["alloffers"+to_string(i)+"-offerid"];
+              %>
+              </td>
+              <td>
+              <%
+                      cout<<context["alloffers"+to_string(i)+"-unitprice"];
+              %>
+              </td>
+              <td>
+              <%
+                      cout<<context["alloffers"+to_string(i)+"-amount"];
+              %>
+              </td>
+              </tr>
+          <br>
+          <%
+              }
+          %>
+      </table>
+  </body>
+</html>

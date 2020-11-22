@@ -1,0 +1,1 @@
+allofferstitle=productId | offerId | offerUnitPrice | offerAmount
